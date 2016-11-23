@@ -1,0 +1,55 @@
+{
+  "name": "HouseholdEstimates",
+  "description": "Number and percentage of total Edinburgh dwellings that are occupied, vacant, second homes, are occupied and exempt from paying Council Tax and that are receiving a Single Adult Council Tax discount. An 'occupied dwelling' is roughly equivalent to a household.",
+  "plural": "HouseholdEstimates",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "mongodb": {
+    "collection": "Stats"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true,
+      "id": true
+    },
+    "year": {
+      "type": "number",
+      "required": true
+    },
+    "zone": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "indicator": {
+      "type": "string",
+      "required": true
+    },
+    "measure": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "dataZone": {
+      "type": "belongsTo",
+      "model": "GeoJSONFeature",
+      "foreignKey": "zone",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
